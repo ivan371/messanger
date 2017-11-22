@@ -9,6 +9,7 @@ import ChatCreate from "./ChatCreate";
 import DoubleChat from "./DoubleChat";
 import Modal from "./Modal";
 import ChatForm from "./ChatForm";
+import ChatUserList from "./ChatUserList";
 
 export const chatListStyle = {
     content: {
@@ -40,7 +41,14 @@ class ChatListComponent extends React.Component {
             );
         }
         if(this.props.isModalOpen) {
-            modal = <Modal><ChatForm/></Modal>;
+            switch (this.props.modalValue) {
+                case 'chat':
+                    modal = <Modal><ChatForm/></Modal>;
+                    break;
+                case 'chatUser':
+                    modal = <Modal><ChatUserList/></Modal>;
+                    break;
+            }
         }
         else {
             modal = null;

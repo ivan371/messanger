@@ -56,6 +56,13 @@ export default function message (store = inititalStore, action) {
             store = update(store, {
                 chatList: {
                     $splice: [[index, 1]],
+                },
+                chats: {
+                    [action.payload.entities.message[action.payload.result].chat]: {
+                        last_message: {
+                            $set: action.payload.entities.message[action.payload.result].text.substring(0, 32) + '...',
+                        }
+                    }
                 }
             });
             return update(store, {

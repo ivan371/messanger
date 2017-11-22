@@ -20,7 +20,7 @@ export function loadChats(url) {
 
 export function chatCreate(url, name) {
     const types = [LOAD_CHAT, LOAD_CHAT_SUCCESS, LOAD_CHAT_ERROR];
-    return apiLoad(url, 'POST', types, JSON.stringify({name}), chatNormalize, true);
+    return apiLoad(url, 'POST', types, JSON.stringify({name, last_message: ''}), chatNormalize, true);
 }
 
 

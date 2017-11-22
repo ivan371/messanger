@@ -30,8 +30,9 @@ class MessageComponent extends React.Component {
                     <img src={this.props.avatar} style={messageStyle.contentAvatar}/>
                 </div>
                 <div style={messageStyle.content}>
-                    <p>{this.props.first_name} {this.props.last_name}</p>
-                    {this.props.text}
+                    <p>{this.props.first_name} {this.props.last_name}
+                    <br/>
+                    {this.props.text}</p>
                 </div>
             </div>
         )
