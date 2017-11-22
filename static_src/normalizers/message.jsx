@@ -5,6 +5,11 @@ export function chatsNormalize (chats) {
     console.log(chats);
     return normalize(chats, [chat]);
 }
+export function chatNormalize (chats) {
+    const chat = new schema.Entity('chat');
+    console.log(chats);
+    return normalize(chats, chat);
+}
 export function messagesNormailze(messages) {
     const user = new schema.Entity('user');
     const message = new schema.Entity('message', {'author': user});

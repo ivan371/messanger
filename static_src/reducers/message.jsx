@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import {LOAD_CHAT_SUCCESS, LOAD_MESSAGE_SUCCESS, LOAD_MESSAGES_SUCCESS} from "../actions/message";
+import {LOAD_CHAT_SUCCESS, LOAD_CHATS_SUCCESS, LOAD_MESSAGE_SUCCESS, LOAD_MESSAGES_SUCCESS} from "../actions/message";
 
 const inititalStore = {
     isLoading: false,
@@ -33,7 +33,7 @@ export default function message (store = inititalStore, action) {
         }
     }
     switch (action.type) {
-        case LOAD_CHAT_SUCCESS:
+        case LOAD_CHATS_SUCCESS:
             return update(store, {
                 isLoading: {
                     $set: true
@@ -53,7 +53,6 @@ export default function message (store = inititalStore, action) {
             });
         case LOAD_MESSAGE_SUCCESS:
             let index = store.chatList.indexOf(action.payload.entities.message[action.payload.result].chat);
-            // console.log(store.chatList.splice(index, 1));
             store = update(store, {
                 chatList: {
                     $splice: [[index, 1]],
@@ -65,6 +64,12 @@ export default function message (store = inititalStore, action) {
                 },
                 chatList: {
                     $unshift: [action.payload.entities.message[action.payload.result].chat],
+                }
+            });
+        case LOAD_CHAT_SUCCESS:
+            return update(store, {
+                chatList: {
+                    $unshift: [action.payload.result],
                 }
             });
         default:
