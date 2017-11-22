@@ -41,7 +41,7 @@ class MessageFormComponent extends React.Component {
         this.setState({[e.target.name]: e.target.value});
     };
     onOpen = () => {
-        this.props.openModal(true, 'chatUser');
+        this.props.openModal(true, 'chatUser', this.props.id);
     };
     render () {
         return (

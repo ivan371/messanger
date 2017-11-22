@@ -46,7 +46,7 @@ class ChatListComponent extends React.Component {
                     modal = <Modal><ChatForm/></Modal>;
                     break;
                 case 'chatUser':
-                    modal = <Modal><ChatUserList/></Modal>;
+                    modal = <Modal><ChatUserList id={this.props.idModal}/></Modal>;
                     break;
             }
         }
@@ -77,6 +77,7 @@ const mapStoreToProps = (state, props) => ({
     chatList: state.message.chatList,
     modalValue: state.users.modalValue,
     isModalOpen: state.users.isModalOpen,
+    idModal: state.users.idModal,
 });
 
 const mapDispatchToProps = (dispatch) => {

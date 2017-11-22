@@ -6,6 +6,7 @@ const inititalStore = {
     count: 0,
     isModalOpen: false,
     modalValue: null,
+    idModal: null,
 };
 
 export default function message (store = inititalStore, action) {
@@ -28,6 +29,13 @@ export default function message (store = inititalStore, action) {
                 store = update(store, {
                     modalValue: {
                         $set: action.modal,
+                    },
+                });
+            }
+            if(action.id !== undefined) {
+                store = update(store, {
+                    idModal: {
+                        $set: action.id,
                     },
                 });
             }
