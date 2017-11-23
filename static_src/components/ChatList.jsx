@@ -10,6 +10,7 @@ import DoubleChat from "./DoubleChat";
 import Modal from "./Modal";
 import ChatForm from "./ChatForm";
 import ChatUserList from "./ChatUserList";
+import UserList from "./UserList";
 
 export const chatListStyle = {
     content: {
@@ -46,7 +47,10 @@ class ChatListComponent extends React.Component {
                     modal = <Modal><ChatForm/></Modal>;
                     break;
                 case 'chatUser':
-                    modal = <Modal><ChatUserList id={this.props.idModal}/></Modal>;
+                    modal = <Modal id={this.props.idModal}><ChatUserList id={this.props.idModal}/></Modal>;
+                    break;
+                case 'chatUserAdd':
+                    modal = <Modal id={this.props.idModal}><UserList id={this.props.idModal}/></Modal>;
                     break;
             }
         }

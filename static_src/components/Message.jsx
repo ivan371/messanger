@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 export const messageStyle = {
     message: {
         display: 'flex',
-        width: '372px',
+        width: '500px',
         margin: '12px auto',
     },
     messageAvatar: {
         margin: '12px',
     },
     content: {
-        width: '200px'
+        width: '400px'
     },
     contentAvatar: {
         width: '40px',

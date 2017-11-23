@@ -2,41 +2,39 @@ import React from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
-import {loadChatUsers} from "../actions/message";
-import {chatUrl} from "../constants";
-import ChatUser from "./ChatUser";
+import User from "./User";
 
-class ChatUserListComponent extends React.Component {
+class UserListComponent extends React.Component {
     render () {
-        let chatUserList = [];
+        let userList = [];
         if (this.props.isLoading) {
-            chatUserList = this.props.chatUserList.map(
-                (chatId) => {
-                    return <ChatUser key={ chatId } id={ chatId } />
+            userList = this.props.userList.map(
+                (userId) => {
+                    return <User key={ userId } id={ userId } />
                 }
             );
         }
         return (
             <div>
-                {chatUserList}
+                {userList}
             </div>
         )
     }
 }
 
-ChatUserListComponent.propTypes = {
+
+UserListComponent.propTypes = {
      id: PropTypes.number.isRequired,
 };
 
 const mapStoreToProps = (state, props) => ({
-    isLoading: state.message.isChatUsersLoading,
-    chatUserList: state.message.chatUserList,
+    userList: state.users.userList,
+    isLoading: state.users.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         ...bindActionCreators({
-            loadChatUsers,
         }, dispatch),
     };
 };
@@ -44,4 +42,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStoreToProps,
     mapDispatchToProps
-)(ChatUserListComponent);
+)(UserListComponent);

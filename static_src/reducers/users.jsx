@@ -1,8 +1,10 @@
 import update from 'react-addons-update';
-import {MODAL_OPEN} from "../actions/users";
+import {LOAD_USERS, LOAD_USERS_SUCCESS, MODAL_OPEN} from "../actions/users";
 
 const inititalStore = {
     users: {},
+    isLoading: false,
+    userList: [],
     count: 0,
     isModalOpen: false,
     modalValue: null,
@@ -24,6 +26,21 @@ export default function message (store = inititalStore, action) {
         }
     }
     switch (action.type) {
+        case LOAD_USERS:
+            return update(store, {
+                isLoading: {
+                    $set: false,
+                }
+            });
+        case LOAD_USERS_SUCCESS:
+            return update(store, {
+                isLoading: {
+                    $set: true,
+                },
+                userList: {
+                    $set: action.payload.result,
+                }
+            });
         case MODAL_OPEN:
             if(action.modal !== undefined) {
                 store = update(store, {

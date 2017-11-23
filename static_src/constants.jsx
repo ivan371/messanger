@@ -3,3 +3,7 @@ export const chatUrl = {
     messageUrl: '/api/message',
     chatUserUrl: '/api/chatuser/'
 };
+
+export const userUrl = {
+    userUrl: '/api/users/'
+};

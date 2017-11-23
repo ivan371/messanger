@@ -1,7 +1,10 @@
 import React from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {openModal} from "../actions/users";
+import {loadUsers, openModal} from "../actions/users";
+import {chatUrl, userUrl} from "../constants";
+import {loadChatUsers} from "../actions/message";
+import PropTypes from 'prop-types';
 
 export const modalStyle = {
     modal: {
@@ -34,6 +37,16 @@ export const modalStyle = {
 };
 
 class ModalComponent extends React.Component {
+    componentWillMount() {
+        switch (this.props.modalValue) {
+            case 'chatUser':
+                this.props.loadChatUsers(chatUrl.chatUserUrl + '?chat=' + this.props.id);
+                break;
+            case 'chatUserAdd':
+                this.props.loadUsers(userUrl.userUrl + '?chat=' + this.props.id);
+                break;
+        }
+    }
     modalClose = () => {
         this.props.openModal(false);
     };
@@ -50,15 +63,19 @@ class ModalComponent extends React.Component {
 }
 
 ModalComponent.propTypes = {
+    id: PropTypes.number,
 };
 
 const mapStoreToProps = (state, props) => ({
+    modalValue: state.users.modalValue,
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         ...bindActionCreators({
             openModal,
+            loadChatUsers,
+            loadUsers,
         }, dispatch),
     };
 };

@@ -10,7 +10,7 @@ import ChatUserList from "./ChatUserList";
 
 export const messageFormStyle = {
     content: {
-        width: '266px',
+        width: '400px',
         margin: '12px auto',
         display: 'flex'
     },
@@ -23,6 +23,7 @@ export const messageFormStyle = {
         width: '40px',
         height: '40px',
         paddingLeft: '12px',
+        paddingRight: '12px',
         cursor: 'pointer'
     }
 };
@@ -43,6 +44,9 @@ class MessageFormComponent extends React.Component {
     onOpen = () => {
         this.props.openModal(true, 'chatUser', this.props.id);
     };
+    onOpenAdd = () => {
+        this.props.openModal(true, 'chatUserAdd', this.props.id);
+    };
     render () {
         return (
             <div style={messageFormStyle.content}>
@@ -59,6 +63,9 @@ class MessageFormComponent extends React.Component {
                 </div>
                 <div>
                     <img src="/static/img/people.png" style={messageFormStyle.img} onClick={this.onOpen}/>
+                </div>
+                <div>
+                    <img src="/static/img/addcontact.png" style={messageFormStyle.img} onClick={this.onOpenAdd}/>
                 </div>
             </div>
         )
